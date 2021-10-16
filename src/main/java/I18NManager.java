@@ -13,26 +13,17 @@ public class I18NManager {
 
     final static Logger logger = Logger.getLogger(I18NManager.class);
 
-    private I18NManager(){
-        this.cache = new HashMap<String, Properties>();//new I18NManagerCache();
+    private I18NManager() {
+        this.cache = new HashMap<String, Properties>();
     }
 
-    public static I18NManager getManager(){
+    public static I18NManager getInstance(){
         if(manager == null){
             manager = new I18NManager();
         }
         return manager;
     }
 
-    public void printFromKey(String key){
-
-        File directory = new File("src\\main\\resources");
-        String[] files = directory.list();
-
-        for(int i = 0; i<files.length; i++){
-            getValue(key,files[i]);
-        }
-    }
 
     public String getValue(String key, String filename) {
 
@@ -60,13 +51,6 @@ public class I18NManager {
             logger.info(" "+filename+" el tenim a cache");
         }
         return p.getProperty(key);
-    }
-
-
-    public static void main(String[] args) {
-        String v = I18NManager.getManager().getValue("k1", "ca");
-        v = I18NManager.getManager().getValue("k1", "ca");
-       // Assert.... "hola",v)
     }
 
 }
